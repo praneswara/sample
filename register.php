@@ -1,18 +1,21 @@
 <?php
-require 'vendor/autoload.php'; // Include Composer's autoloader
 
-use MongoDB\Client;
 use MongoDB\Driver\ServerApi;
 
 $uri = 'mongodb+srv://praneswara2003:pranes2wara8@cluster-1.ttlr5pr.mongodb.net/?appName=Cluster-1';
 
+// Set the version of the Stable API on the client
 $apiVersion = new ServerApi(ServerApi::V1);
 
-$client = new Client($uri, [], ['serverApi' => $apiVersion]);
+// Create a new client and connect to the server
+$client = new MongoDB\Client($uri, [], ['serverApi' => $apiVersion]);
+
+
 
 // Select the database and collection
-$database = $client->login;
-$collection = $database->create;
+$Database = $Client-›selectDatabase("login");
+$Collection = $Database-›selectCollection("create");
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
